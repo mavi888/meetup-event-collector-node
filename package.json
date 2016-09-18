@@ -1,0 +1,16 @@
+{
+  "name": "meetup-event-collector-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "marcia villalba",
+  "license": "ISC"
+}
