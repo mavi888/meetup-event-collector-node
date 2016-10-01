@@ -7,7 +7,6 @@ var getMeetupEvents = function(event) {
       uri: 'https://api.meetup.com/'+ event +'/events',
       json: true // Automatically parses the JSON string in the response
     };
-
     return rp(options);
 };
 
