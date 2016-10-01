@@ -15,4 +15,7 @@ function getIcalEvents() {
     });
 }
 
-getIcalEvents();
+exports.handler = function(event, context, callback) {
+  getIcalEvents();
+  callback(null, "some success message");
+}
