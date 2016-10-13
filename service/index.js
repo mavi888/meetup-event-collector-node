@@ -1,4 +1,5 @@
 'use strict';
+
 var gateway = require('./gateway');
 var parser = require('./parser');
 var icalGen = require('./icalGen');
@@ -15,7 +16,6 @@ function getIcalEvents() {
     });
 }
 
-exports.handler = function(event, context, callback) {
-  getIcalEvents();
-  callback(null, "some success message");
-}
+module.exports = {
+  getIcalEvents : getIcalEvents
+};

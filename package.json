@@ -1,5 +1,5 @@
 {
-  "name": "meetup-event-collector-node",
+  "name": "meetup-event-collector-serverless",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
