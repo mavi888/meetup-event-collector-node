@@ -3,6 +3,7 @@
 var meetupService = require('./service/index');
 
 module.exports.getMeetupEventsCalendar = function(event, context, callback) {
-  meetupService.getIcalEvents('awsfin');
-  callback(null, "Calendar Created!");
+  var calendarEventId = event.path.id;
+  meetupService.getIcalEvents(calendarEventId);
+  callback(null, "Calendar Created for " + calendarEventId + "!");
 }

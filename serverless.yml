@@ -37,9 +37,13 @@ functions:
 #   you can add any of the following events
     events:
       - http:
-          path: meetupevents/calendar
+          path: meetupevents/calendar/{id}
           method: get
           private: true
+          request:
+            parameters:
+              paths:
+                id: true
 #     - s3: ${bucket}
 #     - schedule: rate(10 minutes)
 #     - sns: greeter-topic
