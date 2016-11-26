@@ -1,9 +1,10 @@
 'use strict';
 
-var gateway = require('./gateway');
-var parser = require('./parser');
-var icalGen = require('./icalGen');
-var s3saver = require('./s3saver');
+const gateway = require('./gateway');
+const parser = require('./parser');
+const icalGen = require('./icalGen');
+const s3saver = require('./s3saver');
+const databaseManager = require('./databaseManager.js');
 
 function getIcalEvents(eventId) {
   gateway.getMeetupEvents(eventId).then(function (response) {
@@ -20,6 +21,15 @@ function getIcalEvents(eventId) {
     });
 }
 
+function setGroupId(groupId) {
+  databaseManager.saveGroupIdToDatabase(groupId).then(function (data) {
+    console.log('Saving successful index');
+  }).catch(function (err) {
+    console.log('Error: ' + err);
+  });
+}
+
 module.exports = {
-  getIcalEvents : getIcalEvents
+  getIcalEvents: getIcalEvents,
+  setGroupId: setGroupId
 };
