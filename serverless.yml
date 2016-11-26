@@ -16,6 +16,12 @@ service: meetup-event-collector-22 # NOTE: update this with your service name
 provider:
   name: aws
   runtime: nodejs4.3
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource:
+        - "Fn::Join": ["", ["arn:aws:dynamodb:", {"Ref": "AWS::Region"}, ":", {"Ref": "AWS::AccountId"}, ":table/groups-table-3*"]]
 
 # you can overwrite defaults here
 #defaults:
@@ -38,12 +44,34 @@ functions:
         path: meetupevents/calendar/{id}
         method: get
         private: true
+  setGroupId:
+    handler: handler.setGroupId
+    events:
+    - http:
+        path: meetupevents/groupId/{groupId}
+        method: put
+        private: true
 #     - s3: ${bucket}
 #     - schedule: rate(10 minutes)
 #     - sns: greeter-topic
 
 # you can add CloudFormation resource templates here
 #resources:
+resources:
+  Resources:
+    GroupsIdTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        AttributeDefinitions:
+        - AttributeName: "groupid"
+          AttributeType: "S"
+        KeySchema:
+        - AttributeName: "groupid"
+          KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: "groups-table-3"
 #  Resources:
 #    NewResource:
 #      Type: AWS::S3::Bucket

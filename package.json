@@ -6,6 +6,7 @@
   "dependencies": {},
   "devDependencies": {
     "aws-sdk": "^2.6.12",
+    "aws-sdk-promise": "0.0.2",
     "chai": "^3.5.0",
     "ical-generator": "^0.2.8",
     "mocha": "^3.0.2",

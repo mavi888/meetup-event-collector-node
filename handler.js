@@ -11,3 +11,13 @@ module.exports.getMeetupEventsCalendar = function(event, context, callback) {
   };
   callback(null, response);
 }
+
+module.exports.setGroupId = function(event, context, callback) {
+  const groupId = event.pathParameters.groupId;
+  meetupService.setGroupId(groupId);
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify({"message": "GroupId " + groupId + " saved Successfully!"})
+  };
+  callback(null, response);
+}

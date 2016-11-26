@@ -1,6 +1,10 @@
 'use strict';
 
-var meetupService = require('./service/index');
+const meetupService = require('./service/index');
+const AWS = require('aws-sdk');
+AWS.config.update({region:'us-east-1'});
 
-var calendarEventId = 'awsfin';
-meetupService.getIcalEvents(calendarEventId);
+const calendarEventId = 'awsfin';
+//meetupService.getIcalEvents(calendarEventId);
+
+meetupService.setGroupId(calendarEventId);
