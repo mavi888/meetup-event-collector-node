@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: meetup-event-collector # NOTE: update this with your service name
+service: meetup-event-collector-22 # NOTE: update this with your service name
 
 provider:
   name: aws
@@ -31,19 +31,13 @@ provider:
 #  artifact: my-service-code.zip
 
 functions:
-  getcalendar:
+  getCalendar:
     handler: handler.getMeetupEventsCalendar
-
-#   you can add any of the following events
     events:
-      - http:
-          path: meetupevents/calendar/{id}
-          method: get
-          private: true
-          request:
-            parameters:
-              paths:
-                id: true
+    - http:
+        path: meetupevents/calendar/{id}
+        method: get
+        private: true
 #     - s3: ${bucket}
 #     - schedule: rate(10 minutes)
 #     - sns: greeter-topic
